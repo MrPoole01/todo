@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const dbname = 'crud_todo';
@@ -9,13 +11,13 @@ const mpngoOptions = {
 
 
 const state = {
-  db = null
+  db : null
 };
 
 const connect = (cd) => {
   if (state.db)
     cd();
-  else(
+  else {
     MongoClient.connect(url, mongoOptions, (err, client) => {
       if (err)
         cd(err);
@@ -24,15 +26,13 @@ const connect = (cd) => {
         cd();
       }
     });
-  )
-}
+  }
+};
 
 const getPrimaryKey = (_id) => {
   return ObjectID(_id);
-}
+};
 
-const getDB = () => {
-  return state.db;
-}
+const getDB = () => state.db;
 
 module.exports = {getDB, getPrimaryKey, connect};

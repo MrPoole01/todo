@@ -1,8 +1,10 @@
+/*jshint esversion: 6 */
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
-const collection = require("todo");
+const collection = require("crud_todo");
 
 const db = require("./db");
 

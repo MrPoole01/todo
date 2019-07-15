@@ -1,10 +1,20 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
-const path = require('path');
-const collection = require('todo');
+const path = require("path");
+const collection = require("todo");
 
-const db = require('./db');
+const db = require("./db");
 
 app.use(bodyParser.json());
 
+db.connect(err => {
+  if (err) {
+    console.log("unable to connect to database");
+    process.exit(1);
+  } else {
+    app.listen(3000, () => {
+      console.log("connectes to database");
+    });
+  }
+});

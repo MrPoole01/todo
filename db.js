@@ -5,9 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 const dbname = 'crud_todo';
 
 const url = 'mongodb://localhost:27017';
-const mpngoOptions = {
-  userNewUrlParser: true
-};
+const mongoOptions = { userNewUrlParser : true };
 
 
 const state = {
@@ -18,7 +16,7 @@ const connect = (cd) => {
   if (state.db)
     cd();
   else {
-    MongoClient.connect(url, mongoOptions, (err, client) => {
+    MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
       if (err)
         cd(err);
       else {

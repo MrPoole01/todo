@@ -35,4 +35,4 @@ const getPrimaryKey = (_id) => {
 
 const getDB = () => state.db;
 
-module.exports = {getDB, getPrimaryKey, connect};
+module.exports = {getDB, connect, getPrimaryKey};

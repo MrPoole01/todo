@@ -6,7 +6,7 @@ const app = express();
 const path = require("path");
 const collection = "crud_todo";
 
-const db = require("../db");
+const db = require("./db");
 
 app.use(bodyParser.json());
 

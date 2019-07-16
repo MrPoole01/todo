@@ -6,17 +6,18 @@ const app = express();
 const path = require("path");
 const collection = "crud_todo";
 
-const db = require("./db.js");
+const db = require("./db");
 
 app.use(bodyParser.json());
 
-db.connect(err => {
+db.connect((err) => {
   if (err) {
-    console.log("unable to connect to database");
+    console.log('unable to connect to database');
     process.exit(1);
   } else {
     app.listen(3000, () => {
-      console.log("connectes to database");
+      console.log('connected to database');
+      
     });
   }
 });

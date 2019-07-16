@@ -2,26 +2,26 @@
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-const dbname = 'crud_todo';
+const dbname = "crud_todo";
 
-const url = 'mongodb://localhost:27017';
-const mongoOptions = { userNewUrlParser : true };
+const url = "mongodb://localhost:27017";
+const mongoOptions = {userNewUrlParser : true};
 
 
 const state = {
   db : null
 };
 
-const connect = (cd) => {
+const connect = (cb) => {
   if (state.db)
-    cd();
+    cb();
   else {
-    MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-      if (err)
-        cd(err);
-      else {
+    MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
+      if (err) {
+        cb(err);
+      } else {
         state.db = client.db(dbname);
-        cd();
+        cb();
       }
     });
   }

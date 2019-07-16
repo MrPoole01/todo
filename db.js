@@ -5,9 +5,7 @@ const ObjectID = require("mongodb").ObjectID;
 const dbname = "crud_todo";
 const url = "mongodb://localhost:27017";
 
-const state = {
-  db: null
-};
+const state = { db: null };
 
 const connect = cb => {
   if (state.db) cb();

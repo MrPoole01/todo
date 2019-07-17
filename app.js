@@ -10,10 +10,12 @@ const db = require("./db.js");
 
 app.use(bodyParser.json());
 
+// serve static html file to user
 app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// read
 app.get('/getTodos', (req,res) => {
   db.getDB().collection(collection).find({}).toArray((err, documents) => {
     if (err) {
@@ -24,6 +26,11 @@ app.get('/getTodos', (req,res) => {
     }
   });
 });
+
+// update
+//app.put('/', (req,res) => {
+
+//})
 
 db.connect(err => {
   if (err) {

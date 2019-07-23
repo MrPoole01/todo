@@ -38,7 +38,7 @@ app.put("/:id", (req, res) => {
   db.getDB()
     .collection(collection)
     .findOneAndUpdate(
-      { _id: db.getPrimaryKey(crud_todo) },
+      { _id: db.getPrimaryKey(todoID) },
       { $set: { crud_todo: userInput.crud_todo } },
       { returnOriginal: false },
       (err, result) => {
@@ -49,6 +49,39 @@ app.put("/:id", (req, res) => {
         }
     });
 });
+
+// create
+app.post("/", (req, res) => {
+  const userInput = req.body;
+
+  db.getDB()
+    .collection(collection)
+    .insertOne(userInput, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json({result : result, document : result.ops[0]});
+      }
+    });
+});
+
+// delete
+app.delete("/:id", (req, res) => {
+  const todoID = req.params.id;
+
+  db.getDB()
+    .collection(collection)
+    .findOneAndDelete(
+      { _id: db.getPrimaryKey(todoID) },
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(result);
+        }
+  });
+});
+
 
 db.connect(err => {
   if (err) {
